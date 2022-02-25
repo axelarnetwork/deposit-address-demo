@@ -1,46 +1,66 @@
-# Getting Started with Create React App
+# Deposit address demo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This simple frontend demo app uses [axelarjs-sdk](https://github.com/axelarnetwork/axelarjs-sdk) to enable a user to transfer AXL tokens from Axelar to Avalanche.
 
-## Available Scripts
+This demo performs one task: call `axelarJsSDK.getDepositAddress` to request a one-time deposit address `A` from the Axelar network and present `A` to the user.
 
-In the project directory, you can run:
+From here, the user may send AXL tokens to `A` on the Axelar blockchain. Any user who does this will soon see wrapped Axelar tokens appear in her Avalanche wallet.
 
-### `npm start`
+## Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Configure your Metamask as per [Set up Metamask for EVM chains | Axelar Docs](https://docs.axelar.dev/roles/user/metamask):
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Add Avalanche testnet to your "networks"
+- Import the Axlear ERC20 token to your "assets" for Avalanche
 
-### `npm test`
+## Run the demo
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Clone this repo, install axelarjs-sdk, and run the server
 
-### `npm run build`
+```bash
+git clone git@github.com:axelarnetwork/deposit-address-demo.git
+cd deposit-address-demo
+npm i --save @axelar-network/axelarjs-sdk
+npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Your browser should open automatically to URL `http://localhost:3000/` and display the following
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![deposit-address-demo welcome screen](src/deposit-address-demo-welcome.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Metamask should automatically appear. You'll be asked to connect Metamask to `http://localhost:3000/`. (If Metamask is locked then you first need to unlock it using your Metamask password.)
 
-### `npm run eject`
+<table>
+<tr>
+    <td> <img src="src/metamask-connect-1.png" alt="metamask connect screen 1"> </td>
+    <td> <img src="src/metamask-connect-2.png" alt="metamask connect screen 2"> </td>
+</tr>
+</table>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Select the account you wish to connect with Metamask.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**This Metamask account is the Avalanche testnet account to which you will send AXL tokens.**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Click "next" then "connect" in Metamask.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Click the text "Click here to generate a link address..." in the demo. Metamask will appear again, asking you to sign a one-time code.
 
-## Learn More
+![metamask sign code screen](src/metamask-sign-code.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Click "sign" in Metamask.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+After a few seconds you should see the following
+
+![deposit-address-demo example address](src/deposit-address-demo-address.png)
+
+The demo is now complete.
+
+## Optional: transfer AXL tokens to Avalanche
+
+Send AXL testnet tokens to the one-time deposit address `axelar1...`. One way to do this is visit [Axelar Testnet Faucet](https://faucet.testnet.axelar.dev/). (The minimum transfer amount is 10 AXL. You may need to use the faucet multiple times to accumulate enough AXL in your one-time deposit address.)
+
+Check the balance of your one-time deposit address at [Axelarscan testnet explorer](https://testnet.axelarscan.io/)
+
+The Axelar network microservices will automatically transfer AXL tokens from your one-time address to your Metamask Avalanche testnet account.
+
+Wait a few minutes. Then check the "Axelar (AXL)" ERC20 token balance of your Metamask Avalanche testnet account at [SnowTrace: Avalanche Testnet C-Chain Blockchain Explorer](https://testnet.snowtrace.io/)
