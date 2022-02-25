@@ -1,3 +1,7 @@
+## Coming soon
+
+The `axelarjs-sdk` nodejs repo (upon which this demo depends) is currently private and can be accessed only with a NPM token. The repo will be made public shortly.
+
 # Deposit address demo
 
 This simple frontend demo app uses [axelarjs-sdk](https://github.com/axelarnetwork/axelarjs-sdk) to enable a user to transfer AXL tokens from Axelar to Avalanche.
