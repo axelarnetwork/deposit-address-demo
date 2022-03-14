@@ -1,14 +1,17 @@
-## Coming soon
-
-The `axelarjs-sdk` nodejs repo (upon which this demo depends) is currently private and can be accessed only with a NPM token. The repo will be made public shortly.
-
 # Deposit address demo
 
 This simple frontend demo app uses [axelarjs-sdk](https://github.com/axelarnetwork/axelarjs-sdk) to enable a user to transfer AXL tokens from Axelar to Avalanche.
 
-This demo performs one task: call `axelarJsSDK.getDepositAddress` to request a one-time deposit address `A` from the Axelar network and present `A` to the user.
+This demo performs one task: call `axelarJsSDK.getDepositAddress` to request a one-time deposit address `A` from the Axelar network and present `A` to the user. (From here, the user may send AXL tokens to `A` on the Axelar blockchain. Any user who does this will soon see wrapped Axelar tokens appear in her Avalanche wallet.)
 
-From here, the user may send AXL tokens to `A` on the Axelar blockchain. Any user who does this will soon see wrapped Axelar tokens appear in her Avalanche wallet.
+# Developer notes
+
+Refer to [axelarjs-sdk](https://github.com/axelarnetwork/axelarjs-sdk) for code snippets on SDK setup, instantiation, and invokation. Those code snippets are incorporated into this demo as follows:
+
+- Set up the library consumer in `AxelarApi.js`
+- Instantiate and invoke the library onsumer in `App.js`
+
+# What the user sees
 
 ## Prerequisites
 
